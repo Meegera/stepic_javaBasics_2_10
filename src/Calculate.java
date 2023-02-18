@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 class Calculate {
@@ -10,6 +11,7 @@ class Calculate {
         double a = 0.0;
         double b = 0.0;
         String znak = " ";
+        String res = "";
         int m=0;
         boolean flag = true;
         for(String num:line.split(" ")) {
@@ -43,17 +45,20 @@ class Calculate {
         }
         if(flag) {
             switch(znak){
-                case("+"): System.out.print(a + b);
+                case("+"): res += (a + b);
                     break;
-                case("-"): System.out.print(a - b);
+                case("-"): res += (a - b);
                     break;
                 case("/"):
                     if(b==0.0) System.out.print("Error! Division by zero");
-                    else     System.out.print(a / b);
+                    else     res += (a / b);
                     break;
-                case("*"): System.out.print(a * b);
+                case("*"): res += (a * b);
                     break;
             }
+            PrintWriter pw = new PrintWriter("output.txt");
+            pw.println(res);
+            pw.close();
         }
 
     }
